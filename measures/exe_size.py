@@ -3,8 +3,8 @@ import sys, os
 
 from options import all_options
 
-stats_file = "measures/exe_size_all.txt"
-exe_path = "/home/xternava/Documents/GitHub/nginx/objs/nginx"
+stats_file = "measures/exe_size_2-200.csv"
+exe_path = "./objs/nginx"
 
 def calculate_stats(exe_path):
     exe_stats = os.stat(exe_path)
@@ -21,9 +21,9 @@ def print_stats(opt):
         file=open(stats_file, "a"))
     
 def compilenginx(compile_time_opt):
-    #subprocess.run(["make", "clean"])
+    subprocess.run(["make", "clean"])
     #subprocess.run(["autoreconf", "-fi"])
-    subprocess.run(["./auto/configure", compile_time_opt])
+    subprocess.run(["./auto/configure"] + compile_time_opt)
     subprocess.run(["make"])
 
 def do_operations():
